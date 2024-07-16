@@ -1,0 +1,69 @@
+\chapter{Introdução} 
+\label{chap:intro}
+
+Em 1994 Peter Shor apresentou um algoritmo que resolve o problema da fatoração de números inteiros e do logaritmo discreto em tempo polinomial por um computador quântico \cite{shor}, tais problemas são a base da segurança de algoritmos de criptografia assimétrica amplamente utilizados, como \ac{RSA} e \ac{ECDH}. Algumas empresas como IBM, Microsoft, Intel e Google estão investindo fortemente na pesquisa de computadores quânticos e tecnologias relacionadas. Em 2019 o Google anunciou a conquista da supremacia quântica, quando um computador quântico supera em alguma tarefa um computador clássico, resolvendo um problema em 200 segundos em que um supercomputador clássico resolveria em aproximadamente 10000 anos \cite{google}. Uma equipe de pesquisadores da China fatorou uma chave de 48 bits usando um computador quântico de 10 qubit, a equipe estimou fatorar uma chave de 2048 bits com um computador de 372 qubits usando seu algoritmo\cite{yan2022factoring}, entretanto a IBM já possui um computador quântico com um processador de 433 qubit \cite{ibm433qubit}.
+
+Com o avanço nas pesquisas na área da computação quântica, iniciou-se uma preocupação com relação à segurança dos dados que dependem de sistemas criptográficos comprometidos pelo algoritmo de Shor. Em 2016 o \ac{NIST} iniciou o programa \textit{Post-Quantum Cryptography Standardization}, cujo objetivo é selecionar algoritmos de criptografia assimétricos e de assinatura digital resistentes a ataques realizados por computadores clássicos e quânticos, que possam ser utilizados em computadores convencionais \cite{nist}. Os algoritmos participantes são estudados e avaliados pela comunidade científica, considerando a segurança, eficiência e interoperabilidade com outros protocolos de criptografia atuais. O processo de padronização é realizado em rodadas, os algoritmos mais promissores são selecionados para prosseguir para a próxima rodada. 
+
+Na primeira rodada foram submetidos 45 esquemas de criptografia assimétrica e 19 de assinatura digital. A Tabela \ref{tab:nist_pqc_round_1} mostra os diferentes tipos de criptografia assimétrica e de assinatura digital submetidos nessa rodada do programa, dos quais após 3 rodadas foram selecionados para padronização e substituição em larga escala os algoritmos mostrados na Tabela \ref{tab:nist_pqc_selected}. Outros algoritmos prosseguiram para a quarta rodada, na qual continuam sendo estudados e avaliados para uma possível padronização futuramente. Embora os algoritmos baseados em reticulados apresentem uma ótima segurança e desempenho, não se é recomendado depender apenas de um tipo de criptografia, este é o motivo da padronização do algoritmo SPHINCS+ e do estudo dos algoritmos da quarta rodada, conforme pode ser observado na Tabela \ref{tab:nist_pqc_four_round}.
+
+    \begin{table}[h]
+        \centering
+        \caption{Primeira rodada do NIST PQC.}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Tipo & Criptografia assimétrica & Assinatura digital \\ \hline
+            Baseada em reticulados & 21 & 5 \\ \hline
+            Baseada em código    & 17 & 2 \\ \hline
+            Baseada em \textit{hash}    & 0  & 3 \\ \hline
+            Multivariada  & 2  & 7 \\ \hline
+            Outros        & 5  & 2 \\ \hline
+        \end{tabular}\\
+        \footnotesize{Fonte: Adaptado de: \cite{nist_round1}.}
+        \label{tab:nist_pqc_round_1}
+    \end{table}
+
+    \begin{table}[h]
+        \centering
+        \caption{Algoritmos selecionados do NIST PQC.}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Tipo & Criptografia assimétrica & Assinatura digital        \\ \hline
+            Baseada em reticulados & CRYSTALS-Kyber & \begin{tabular}[c]{@{}c@{}}CRYSTALS-Dilithium\\ FALCON\end{tabular} \\ \hline
+            Baseada em \textit{hash}    &                & SPHINCS+                   \\ \hline
+        \end{tabular}\\
+        \footnotesize{Fonte: Adaptado de: \cite{nist_round1}.}
+        \label{tab:nist_pqc_selected}
+    \end{table}
+
+    \begin{table}[!htbp]
+        \centering
+        \caption{Quarta rodada do NIST PQC.}
+        \begin{tabular}{|c|c|}
+            \hline
+            Tipo & Criptografia assimétrica                                        \\ \hline
+            Baseada em código                             &\begin{tabular}[c]{@{}c@{}}BIKE\\ Classic MacEliece\\ HQC\end{tabular} \\ \hline
+            Baseada em isogenia    & SIKE                         \\ \hline
+        \end{tabular}\\
+        \footnotesize{Fonte: Adaptado de: \cite{nist_round1}.}
+        \label{tab:nist_pqc_four_round}
+    \end{table}
+
+A equipe \ac{CRYSTALS} desenvolveu dois sistemas criptográficos, escolhidos para padronização após avaliações da comunidade científica no programa \textit{Post-Quantum Cryptography Standardization} do \ac{NIST}, sendo o algoritmo Kyber para criptografia de chave assimétrica e Dilithium para assinatura digital \cite{nist3}. Após a aprovação e padronização do Kyber no programa PQC em 24 de agosto de 2023, o \ac{NIST} alterou o nome do algoritmo Kyber para \ac{ML-KEM}. O algoritmo \ac{ML-KEM}, que é o foco deste trabalho, é baseado no esquema \ac{LWE} introduzido por \cite{regev}, tal modelo ficou famoso devido a sua relação com alguns problemas de difícil resolução baseados em reticulados, como \ac{SVP} e \ac{CVP}, que possuem grande complexidade de resolução mesmo para um computador quântico.
+
+Devido ao fato da popularidade da criptografia baseada em reticulados ser recente, existe uma escassez de materiais didáticos acessíveis destinados a estudantes de ciência da computação interessados no algoritmo \ac{ML-KEM} e nos conceitos matemáticos associados. O propósito deste trabalho é fornecer um material de estudo de fácil compreensão que aborda o algoritmo de criptografia pós-quântico \ac{ML-KEM} e os princípios matemáticos subjacentes, tornando-os acessíveis a estudantes de computação. Os objetivos específicos deste trabalho incluem:
+
+\noindent
+\begin{itemize}
+    \item Apresentar uma introdução à criptografia, contextualizando seus diversos tipos;
+    \item Explorar os conceitos de reticulados e suas aplicações na criptografia, fornecendo uma base sólida para compreensão;
+    \item Especificar e compreender os principais problemas computacionais envolvendo reticulados;
+    \item Oferecer todos os conceitos para o entendimento do algoritmo \ac{ML-KEM} de forma simplificada. 
+    \item Realizar uma implementação simplificada do algoritmo \ac{ML-KEM}.
+\end{itemize}
+
+A implementação simplificada na linguagem C do algoritmo ML-KEM pode ser encontrada no repositório do GitHub em \url{https://github.com/opallace/ML-KEM}.
+
+O desenvolvimento deste trabalho se deu por meio de uma pesquisa referenciada e aplicada, com o uso de diversas pesquisas pré-existentes como base teórica para o desenvolvimento do texto apresentado neste documento.
+
+A estrutura do texto consiste em cinco capítulos, no qual o primeiro capítulo introduz o problema, motivação e os objetivos deste trabalho. O Capítulo \ref{cap:criptografia} apresenta alguns conceitos básicos de criptografia e criptoanálise, fundamentais para o entendimento da área. No Capítulo \ref{cap:reticulados} é abordada a estrutura algébrica de reticulados, que possui problemas computacionais que compõem a base da segurança do algoritmo \ac{ML-KEM}. A explicação do algoritmo \ac{ML-KEM} está no Capítulo \ref{cap:ml_kem}, sendo que, na Seção \ref{sec:k-pke} é explicado o algoritmo K-PKE, utilizado como um subprocesso do \ac{ML-KEM}. Por fim, seguem-se as conclusões e trabalhos futuros abertos a partir deste no Capítulo \ref{cap:consideracoes_parciais}. Podem ser encontrados, nos apêndices, os conceitos, demonstrações matemáticas e os algoritmos abordados.

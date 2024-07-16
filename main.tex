@@ -1,0 +1,162 @@
+
+
+\NeedsTeXFormat{LaTeX2e}
+%-----------------------------------------------------------
+\documentclass[a4paper,12pt]{pkg/monografia}
+\usepackage{makecell}
+\usepackage[pdfpagelabels]{hyperref}
+\usepackage[brazil]{babel}
+\usepackage{minted}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatimbox}
+\usepackage{listings}
+\usepackage{url, fancyhdr, amsmath,amsthm,amsfonts,amssymb, latexsym, bm}
+\usepackage{array,booktabs,tablefootnote,multirow,xfrac,nicefrac,cite,array,enumitem,hhline}
+\usepackage{graphicx,textcase,textcomp, glossaries, caption}
+\usepackage[mathcal]{eucal}
+\usepackage[alf]{pkg/abntcite}
+\usepackage[portuguese,linesnumbered,boxruled,noend]{algorithm2e}
+\usepackage{acronym}
+\usepackage[table]{xcolor} 
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{footnote}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage{glossaries}
+\renewcommand*{\UrlFont}{\footnotesize}
+
+\makesavenoteenv{table}
+\makesavenoteenv{tabular}
+\newlist{longenum}{enumerate}{5}
+\setlist[longenum,1]{label=\roman*)}
+\setlist[longenum,2]{label=\alph*)}
+\setlist[longenum,3]{label=\arabic*)}
+\setlist[longenum,4]{label=(\roman*)}
+\setlist[longenum,5]{label=(\alph*)}
+
+
+%%%%%%%%%% Lista de novos comandos %%%%%%%%%%
+\newcommand{\blk}{\cellcolor{black}}
+\newcommand{\mr}[3]{\multirow{#1}{#2}{#3}}
+\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+\newcommand{\mcbf}[3]{\multicolumn{#1}{#2}{\textbf{#3}}}
+\newcommand{\mmbf}[3]{\multicolumn{2}{|#2|}{\textbf{#3}}}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\newtheorem{definition}{Definição}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}{Corolário}[theorem]
+\newtheorem{lemma}[theorem]{Lema}
+
+\newtheoremstyle{sltheorem}
+{}                % Space above
+{}                % Space below
+{}                % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries}       % Theorem head font % (default is \mdseries)
+{:}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{sltheorem}
+\newtheorem{exemplo}{Exemplo}
+\newtheorem{contraexemplo}{Contra-Exemplo}
+
+%comentários e anotações da karina
+\newcommand{\comentando}[1]{\textcolor{red}{#1}}
+
+\SetNlSty{textbf}{}{:}
+\setlength{\algomargin}{2.5em}
+
+
+\input{in/configPDF}
+\makeglossaries
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+\begin{document}
+%
+%----------------- Título e Dados do Autor -----------------
+\titulo{Mecanismo de Criptografia Pós-Quântica ML-KEM: Uma Introdução para Estudantes de Ciência da Computação}%
+\autor{Wallace Mielniczki}%
+\nome{Wallace Mielniczki}%
+\ultimonome{Mielniczki}%
+%
+%---------- Informe o Curso e Grau -----
+\bacharelado \curso{Ciência da Computação} \mes{Dezembro} \ano{2023} 
+\data{\today}% data da aprovação
+\cidade{Joinville}%
+%
+%----------Informações sobre a Institução -----------------
+\instituicao{Universidade do Estado de Santa Catarina}%
+\sigla{UDESC}% 
+\unidadeacademica{Centro de Ciências Tecnológicas}%
+%
+\orientador{Karina Girardi Roggia}%
+%    
+\examinadorum{Debora Cabral Nazário}%
+%
+\examinadordois{Charles Christian Miers}%
+%
+\examinadortres{Rafael Rodrigues Obelheiro}%
+%
+
+%---------------------------------------------------------------%
+%--------- Títulos do Orientador 1o. e 2o. Examinadores ----
+\ttorientador{Doutora}%
+\ttexaminadorum{Doutora}%
+\ttexaminadordois{Doutor}
+\ttexaminadortres{Doutor}
+
+\hypersetup{pageanchor=false}
+\maketitle
+\hypersetup{pageanchor=true}
+
+%--------Digite aqui o seu resumo em Português--------------
+\resumo{Resumo}
+\input{PreTextuais/Resumo}
+
+%-----------Digite aqui o seu resumo em Inglês--------------
+\resumo{Abstract}
+\input{PreTextuais/Abstract}
+
+%-----------------------------------------------------------
+
+\thispagestyle{empty} 
+\listoffigures
+\listofabbreviations{Lista de Abreviaturas} % lista de abreviações
+\input{PreTextuais/Acronimos} 
+\printglossary
+
+%-----------------------------------------------------------
+
+%----Sumário, lista de figura e de tabela ------------
+\listoftables
+\tableofcontents 
+\thispagestyle{empty}
+\newpage
+
+%--------------Início do Conteúdo---------------------------
+\pagestyle{ruledheader}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\input{Textuais/Capitulo01}
+\input{Textuais/Capitulo02}
+\input{Textuais/Capitulo03}
+\input{Textuais/Capitulo04}
+\input{Textuais/Capitulo05}
+
+\newpage
+
+\bibliographystyle{pkg/abnt-alf}
+\bibliography{bibliografia}
+
+\appendix
+\input{PosTextuais/Apendice}
+
+
+\end{document}
